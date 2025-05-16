@@ -4,7 +4,7 @@
 [![Latest Version](https://img.shields.io/packagist/v/isadma/laravel-smpp.svg?style=flat-square)](https://packagist.org/packages/isadma/laravel-smpp)
 [![License](https://img.shields.io/packagist/l/isadma/laravel-smpp.svg?style=flat-square)](LICENSE)
 
-A simple Laravel package to send SMS messages using the SMPP protocol, built on top of [alexandr-mironov/php-smpp](https://github.com/alexandr-mironov/php-smpp).
+A simple Laravel package to send SMS messages using the SMPP protocol, built on top of [alexandr-mironov/php8-smpp](https://github.com/alexandr-mironov/php8-smpp).
 
 ---
 
@@ -56,7 +56,7 @@ You can use the Facade for cleaner syntax:
 ```php
 use Smpp;
 
-Smpp::sendMessage('9936XXXXXXX', 'Your message');
+SmppService::sendMessage('9936XXXXXXX', 'Your message');
 ```
 
 ---
@@ -69,4 +69,4 @@ This package is open-sourced software licensed under the [MIT license](LICENSE).
 
 ## 🙏 Credits
 
-- [alexandr-mironov/php-smpp](https://github.com/alexandr-mironov/php-smpp)
+- [alexandr-mironov/php8-smpp](https://github.com/alexandr-mironov/php8-smpp)

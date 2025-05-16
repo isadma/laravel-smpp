@@ -1,69 +1,34 @@
 <?php
+declare(strict_types=1);
 
 namespace Isadma\LaravelSmpp;
 
-use Smpp\SMPP;
-use Smpp\SmppClient;
-use Smpp\SmppAddress;
-use Smpp\Transport\SocketTransport;
+use Isadma\LaravelSmpp\Transport\Socket;
 
 class SmppService
 {
-    protected SmppClient $client;
-    protected SocketTransport $transport;
-    protected string $from;
-
-    public function __construct()
+    public static function send(string $recipient, string $message): void
     {
-        $this->from = config('smpp.from');
+        $ip       = config('smpp.ip');
+        $port     = (int) config('smpp.port');
+        $from     = config('smpp.from');
+        $username = config('smpp.username');
+        $password = config('smpp.password');
+        $timeout  = (int) config('smpp.timeout', 10000); // optional default
 
-        $this->transport = new SocketTransport([config('smpp.ip')], config('smpp.port', 2775));
-        $this->transport->setRecvTimeout(10_000);
-        $this->transport->open();
+        $transport = new Socket([$ip], $port);
+        $transport->debug = false;
+        $transport->setRecvTimeout($timeout);
 
-        $this->client = new SmppClient($this->transport);
-        $this->client->debug = false;
+        $smpp = new Client($transport);
 
-        $this->client->bindTransmitter(
-            config('smpp.username'),
-            config('smpp.password')
-        );
-    }
+        $smpp->bindTransceiver($username, $password);
 
-    /**
-     * Send an SMS message.
-     *
-     * @param string $to Recipient phone number with country code without plus
-     * @param string $message Text content of the SMS
-     * @return bool True if sent successfully
-     * @throws \RuntimeException On failure
-     */
-    public function sendMessage(string $to, string $message): bool
-    {
-        try {
-            $sourceAddr = new SmppAddress($this->from, SMPP::TON_ALPHANUMERIC);
-            $destAddr   = new SmppAddress($to, SMPP::TON_INTERNATIONAL, SMPP::NPI_E164);
+        $fromAddress = new Address($from, Smpp::TON_ALPHANUMERIC);
+        $toAddress   = new Address($recipient, Smpp::TON_INTERNATIONAL, Smpp::NPI_E164);
 
-            $this->client->sendSMS(
-                $sourceAddr,
-                $destAddr,
-                $message,
-                null,
-                [
-                    'receipted_message_id' => uniqid(),
-                    'registered_delivery_flag' => SMPP::REG_DELIVERY_SMSC_BOTH,
-                ]
-            );
+        $smpp->sendSMS($fromAddress, $toAddress, $message, null, Smpp::DATA_CODING_UCS2);
 
-            return true;
-        } catch (\Exception $e) {
-            throw new \RuntimeException(
-                'Failed to send SMPP message: ' . $e->getMessage(),
-                0,
-                $e
-            );
-        } finally {
-            $this->client->close();
-        }
+        $smpp->close();
     }
 }

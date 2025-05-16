@@ -6,11 +6,11 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit586db71f503c89d7f92341f891b808ee
 {
+    public static $files = array (
+        '9b38cf48e83f5d8f60375221cd213eee' => __DIR__ . '/..' . '/phpstan/phpstan/bootstrap.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
-        's' => 
-        array (
-            'smpp\\' => 5,
-        ),
         'I' => 
         array (
             'Isadma\\LaravelSmpp\\' => 19,
@@ -18,10 +18,6 @@ class ComposerStaticInit586db71f503c89d7f92341f891b808ee
     );
 
     public static $prefixDirsPsr4 = array (
-        'smpp\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/alexandr-mironov/php-smpp/src',
-        ),
         'Isadma\\LaravelSmpp\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',

@@ -16,6 +16,10 @@
     ],
     "require": {
         "php": "^8.0",
-        "alexandr-mironov/php-smpp": "^1.0"
+        "ext-sockets": "*",
+        "ext-mbstring": "*"
+    },
+    "require-dev": {
+        "phpstan/phpstan": "1.4.8"
     }
 }

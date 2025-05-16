@@ -6,6 +6,5 @@ $vendorDir = dirname(__DIR__);
 $baseDir = dirname($vendorDir);
 
 return array(
-    'smpp\\' => array($vendorDir . '/alexandr-mironov/php-smpp/src'),
     'Isadma\\LaravelSmpp\\' => array($baseDir . '/src'),
 );
