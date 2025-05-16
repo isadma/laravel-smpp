@@ -19,7 +19,7 @@ class SmppService
         $transport = new Socket([$ip], $port);
         $transport->debug = false;
         $transport->setRecvTimeout($timeout);
-
+        $transport->open();
         $smpp = new Client($transport);
 
         $smpp->bindTransceiver($username, $password);
