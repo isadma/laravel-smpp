@@ -9,12 +9,12 @@ class SmppService
 {
     public static function send(string $recipient, string $message): void
     {
-        $ip       = config('smpp.ip');
-        $port     = (int) config('smpp.port');
-        $from     = config('smpp.from');
-        $username = config('smpp.username');
-        $password = config('smpp.password');
-        $timeout  = (int) config('smpp.timeout', 10000); // optional default
+        $ip       = env('SMPP_IP');
+        $port     = (int) env('SMPP_PORT');
+        $from     = env('SMPP_FROM', '0764');
+        $username = env('SMPP_USERNAME');
+        $password = env('SMPP_PASSWORD');
+        $timeout  = (int) env('SMPP_TIMEOUT', 10000);
 
         $transport = new Socket([$ip], $port);
         $transport->debug = false;

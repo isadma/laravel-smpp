@@ -3,7 +3,7 @@
         'name' => 'isadma/laravel-smpp',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '8f4d6f3820376cecdc4da0d3aa5d20939095ce6e',
+        'reference' => '2c20c241daa8c83a9989f1bafbc6b3b1196e4a76',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'isadma/laravel-smpp' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '8f4d6f3820376cecdc4da0d3aa5d20939095ce6e',
+            'reference' => '2c20c241daa8c83a9989f1bafbc6b3b1196e4a76',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
