@@ -19,18 +19,11 @@ A simple Laravel package to send SMS messages using the SMPP protocol, built on 
 
 ## 📦 Installation
 
-### Step 1: Require the package
+### Require the package
 
 ```bash
 composer require isadma/laravel-smpp
 ```
-
-### Step 2: Publish the configuration
-
-```bash
-php artisan vendor:publish --tag=config
-```
-
 ---
 
 ## ⚙️ Configuration
@@ -39,7 +32,7 @@ Add the following to your `.env` file:
 
 ```env
 SMPP_IP=ip_address
-SMPP_PORT=2775
+SMPP_PORT=port_number
 SMPP_FROM=your_short_number
 SMPP_USERNAME=your_smpp_username
 SMPP_PASSWORD=your_smpp_password
