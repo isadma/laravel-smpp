@@ -8,7 +8,7 @@ class LaravelSmppServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/smpp.php', 'smpp');
+        $this->mergeConfigFrom(__DIR__.'/config/smpp.php', 'smpp');
     }
 
     public function boot()
